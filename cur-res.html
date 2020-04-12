@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/8bee116590.js" crossorigin="anonymous"></script>
 
 
-    <title>Current reservations</title>
+    <title>Peter B - Corona Virus tracker</title>
 
     <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet"
@@ -24,52 +24,50 @@
 <body>
 
     <div class="jumbotron">
-        <h1 class="display-4"><i class="fas fa-fire"></i>Hot Restaurant</h1>
+        <h1 class="display-4"><i class="fas fa-fire"></i>Corona virus latest stats</h1>
         <hr class="my-4">
-        <p>Current Reservations and Waiting List</p>
+        <p>Data is updated daily by systems.jhu.edu/</p>
         <p class="lead">
-          <a class="btn btn-danger btn-lg" href="#" role="button">Make a reservation</a>
-          <a class="btn btn-danger btn-lg" href="#" role="button" id = "cur-res">Show current reservations</a>
-          <a class="btn btn-light btn-lg" href="#" role="button"><i class="fas fa-home"></i></a>
+          <a class="btn btn-danger btn-lg" id='submit' href="#" role="button">Show stats</a>
+
           
         </p>
       </div>
 
-        <!-- This row will handle all of the current reservations -->
+        <!-- This row will handle all the data the current reservations -->
     <div class="row">
         <div class="col-sm-12">
           <br>
   
           <div class="card">
   
-            <!-- card Heading for the current reservations  -->
+            <!-- to add data about previous day -->
             <div class="card-header">
               <strong>
-                Current reservations<span class ="emp" id ="curReservedSpan"></span></strong>
+                Today <span class ="emp" id ="output"></span></strong>
             </div>
   
-            <!-- This main card will hold each of the resulting articles -->
-            <div class="card-body emp" id="reservations-section">
+            <div class="card-body emp" id="today-section">
             </div>
           </div>
         </div>
       </div>
 
-<!-- This row will handle the waiting list -->
+
       <div class="row">
         <div class="col-sm-12">
           <br>
   
           <div class="card">
   
-            <!-- card Heading for the waiting list  -->
+            <!-- card Heading for the yesterday list  -->
             <div class="card-header">
               <strong>
-                 Waiting list</strong>
+                Yesterday</strong>
             </div>
   
-            <!-- This main card will hold each of the resulting waitlists -->
-            <div class="card-body emp" id="waitinglist-section">
+           
+            <div class="card-body emp" id="yesterday">
             </div>
           </div>
         </div>
@@ -77,18 +75,9 @@
     
       <!-- end of card -->
 
-
-     
-      <a class="btn btn-link " href="#" role="button">API Table </a>
-      <a class="btn btn-link " href="#" role="button">API Waitlist</a>
-      <a class="btn btn-link " href="#" role="button">Clear Table</a>
- 
-
-
-
       <script type="text/javascript">
-    $("#cur-res").on("click", function() {
-      $(".emp").empty();
+    $("#submit").on("click", function() {
+      $("#output").empty();
       
       $.get("/api/tableList/", function(data) {
         var curReserved = data.length;
