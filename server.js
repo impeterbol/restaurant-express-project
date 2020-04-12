@@ -9,7 +9,7 @@ var path = require("path");
 // =============================================================
 var app = express();
 // var PORT = 3000;
-let port = process.env.PORT || 8080
+let port = process.env.PORT || 8080;
 
 
 // Sets up the Express app to handle data parsing
